@@ -8,7 +8,7 @@
 <body>
 <div class="head">
     <div class="headerobjectswrapper">
-        <div class="weatherforcastbox"><span style="font-style: italic;">Weatherforcast for the next 24 hours: Plenty of Sunshine</span><br><span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span></div>
+        <div class="weatherforcastbox"><span style="font-style: italic;">Days since last game: <span id="daysSLG"></span></span><br><span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span></div>
         <header>GLOOMHAVEN Papis Frikis</header>
     </div>
 
@@ -31,5 +31,15 @@
     var date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
     document.getElementById('shDate').html(date);
 </script>
+<script type = "text/javascript" >
+    var date1 = new Date("05/27/2022");
+    var date2 = new Date();
+
+    var Difference_In_Time = date2.getTime() - date1.getTime();
+    var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+
+    document.getElementById("daysSLG").html(Difference_In_Days);
+</script>
+
 </body>
 </html>
