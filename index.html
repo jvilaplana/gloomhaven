@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="css/newspaper.css">
     <title>GLOOMHAVEN Papis Frikis</title>
     <meta name="viewport" content="width=device-width">
-
 </head>
 <body>
 <div class="head">
@@ -13,7 +12,7 @@
         <header>GLOOMHAVEN Papis Frikis</header>
     </div>
 
-    <div class="subhead">Planet Earth, SS - Friday March 12, 2021 - First Session</div>
+    <div id="shDate" class="subhead"></div>
 </div>
 <div class="content">
     <div class="collumns">
@@ -28,6 +27,9 @@
          </div>
     </div>
 </div>
-
+<script>
+    var date = today.getDate() + '/' + (today.getMonth()+1) + '/' + today.getFullYear();
+    document.getElementById('shDate').html(date);
+</script>
 </body>
 </html>
