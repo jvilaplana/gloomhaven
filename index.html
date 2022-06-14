@@ -46,6 +46,18 @@
 
     <link rel="stylesheet" href="css/apex-charts.css" />
 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+        .counter {
+        	font-family: 'Rampart One', cursive;
+        	font-size: 1em;
+        	margin: 100vh auto 40vh;
+        }
+        .counter:not(.is-visible) {
+        	visibility: hidden;
+        }
+    </style>
+
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -54,6 +66,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="js/config.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
   </head>
 
   <body>
@@ -75,31 +88,29 @@
                     <div class="card h-100">
                       <div class="card-header d-flex align-items-center justify-content-between pb-0">
                         <div class="card-title mb-0">
-                          <h5 class="m-0 me-2 text-primary">Gloomhaven Papis Frikis</h5>
+                          <h5 class="m-0 me-2 text-primary">⚔️ Gloomhaven Papis Frikis 🛡️</h5>
                           <small class="text-muted">Comprat en <span id="boughtDate"></span></small>
                         </div>
                       </div>
                       <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                           <div class="d-flex flex-column align-items-center gap-1">
-                            <h2 class="mb-2"><span id="gameCount"></span></h2>
+                            <h2 class="mb-2"><span id="gameCount" class="counter"></span></h2>
                             <span>Total Partides</span>
                           </div>
                         </div>
                         <ul class="p-0 m-0">
                           <li class="d-flex mb-4 pb-1">
                             <div class="avatar flex-shrink-0 me-3">
-                              <span class="avatar-initial rounded bg-label-primary"
-                                ><i class="bx bx-time-five"></i
-                              ></span>
+                              <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-time-five"></i></span>
                             </div>
                             <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                               <div class="me-2">
                                 <h6 class="mb-0">Temps sense jugar</h6>
-                                <small class="text-muted">Quan quedem???</small>
+                                <small class="text-muted">Quan quedem? 🧐</small>
                               </div>
                               <div class="user-progress">
-                                <small class="fw-semibold"><span id="daysSLG"></span> dies</small>
+                                <small class="fw-semibold"><span id="daysSLG" class="counter"></span> dies</small>
                               </div>
                             </div>
                           </li>
@@ -127,7 +138,7 @@
                                 <small class="text-muted">Quant temps passa entre partides?</small>
                               </div>
                               <div class="user-progress">
-                                <small class="fw-semibold"><span id="daysPerGame"></span> dies</small>
+                                <small class="fw-semibold"><span id="daysPerGame" class="counter"></span> dies</small>
                               </div>
                             </div>
                           </li>
@@ -143,7 +154,7 @@
                                 <small class="text-muted">Quant trigarem en acabar el joc?</small>
                               </div>
                               <div class="user-progress">
-                                <small class="fw-semibold"><span id="daysToComplete"></span> dies</small>
+                                <small class="fw-semibold"><span id="daysToComplete" class="counter"></span> dies</small>
                               </div>
                             </div>
                           </li>
@@ -275,7 +286,7 @@
               plotOptions: {
                 bar: {
                   horizontal: false,
-                  columnWidth: '66%',
+                  columnWidth: '86%',
                   borderRadius: 12,
                   startingShape: 'rounded',
                   endingShape: 'rounded'
@@ -318,7 +329,7 @@
                 }
               },
               xaxis: {
-                categories: ['Gen', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Des'],
+                categories: ['GN', 'FB', 'MÇ', 'AB', 'MG', 'JN', 'JL', 'AG', 'ST', 'OC', 'NV', 'DS'],
                 labels: {
                   style: {
                     fontSize: '13px',
@@ -733,7 +744,36 @@
             weeklyExpenses.render();
           }
         })();
+    </script>
+    <script type="text/javascript">
+    window.onload = function(event) {
+        const counterUp = window.counterUp.default
 
+        const callback = entries => {
+        	entries.forEach( entry => {
+        		const el = entry.target
+        		if ( entry.isIntersecting && ! el.classList.contains( 'is-visible' ) ) {
+                            for(const counter of counters) {
+              	              counterUp( counter, {
+              		              duration: 3000,
+              		              delay: 16,
+              	              })
+                            el.classList.add( 'is-visible' )
+                          }
+        	    }
+        	} )
+        }
+
+        // observer
+        const IO = new IntersectionObserver( callback, { threshold: 1 } )
+
+        // First element to target
+        const el = document.querySelector( '.counter' )
+
+        // all numbers
+        const counters = document.querySelectorAll( '.counter' )
+        IO.observe( el )
+    };
     </script>
   </body>
 </html>
