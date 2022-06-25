@@ -1,17 +1,5 @@
 <!DOCTYPE html>
 
-<!-- =========================================================
-* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
-==============================================================
-
-* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
-* Created by: ThemeSelection
-* License: You must have a valid license purchased in order to legally use the theme for your project.
-* Copyright ThemeSelection (https://themeselection.com)
-
-=========================================================
- -->
-<!-- beautify ignore:start -->
 <html lang="ca" class="light-style layout-menu-fixed">
   <head>
     <meta charset="utf-8" />
@@ -66,6 +54,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
     <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
   </head>
 
@@ -229,12 +218,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script type = "text/javascript">
-        //var lastGame = new Date("05/27/2022");
-        var lastGame = new Date("06/17/2022");
-        var gameCount = 2;
-        var completedScenarios = 1;
-        var totalScenarios = 75;
-        var gameBought = new Date("05/12/2022");
+        var lastGame = new Date(data.lastGame);
+        var gameCount = data.gameCount;
+        var completedScenarios = data.completedScenarios;
+        var totalScenarios = data.totalScenarios;
+        var gameBought = new Date(data.gameBought);
         var today = new Date();
         document.getElementById('boughtDate').innerHTML = gameBought.getDate() + '/' + (gameBought.getMonth()+1) + '/' + gameBought.getFullYear();
         document.getElementById('lastGameDate').innerHTML = lastGame.getDate() + '/' + (lastGame.getMonth()+1) + '/' + lastGame.getFullYear();
@@ -275,7 +263,7 @@
               series: [
                 {
                   name: '2022',
-                  data: [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0]
+                  data: data.games22
                 }
               ],
               chart: {
